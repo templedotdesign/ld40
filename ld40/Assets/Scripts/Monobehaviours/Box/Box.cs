@@ -20,7 +20,10 @@ public class Box : MonoBehaviour {
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        landed = false;
+        if (collision.collider.tag == "conveyor")
+        {
+            landed = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +36,7 @@ public class Box : MonoBehaviour {
 
 
     void FixedUpdate () {
-        if(landed) 
+        if(landed && loss.total < 50) 
         {
             body.MovePosition((Vector2)transform.position + (Vector2.right * speed * Time.fixedDeltaTime));
         }

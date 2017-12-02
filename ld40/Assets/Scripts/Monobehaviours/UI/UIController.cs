@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class UIController : MonoBehaviour 
@@ -12,6 +11,6 @@ public class UIController : MonoBehaviour
     void Update () 
     {
         timerText.text = "Time: " + clock.minutes.ToString() + ":" + clock.seconds.ToString("f2");
-        lossText.text = "Lost boxes: " + loss.total;
+        lossText.text = "Boxes Lost: " + loss.total;
 	}
 }

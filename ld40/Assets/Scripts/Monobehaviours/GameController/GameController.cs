@@ -6,7 +6,9 @@ public class GameController : MonoBehaviour {
     public Clock clock;
     public Loss loss;
 
-    void Start()
+    bool gameOver = false;
+
+    void Awake()
     {
         clock.ResetClock(); 
         loss.Reset();
@@ -14,6 +16,14 @@ public class GameController : MonoBehaviour {
 
     void Update() 
     {
-        clock.UpdateClock(Time.deltaTime);
+        if(loss.total >= 50) 
+        {
+            gameOver = true;    
+        }
+
+        if (!gameOver)
+        {
+            clock.UpdateClock(Time.deltaTime);
+        }
     }
 }
