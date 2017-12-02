@@ -1,29 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
-    public Clock clock;
-    public Loss loss;
+public class GameController : MonoBehaviour
+{
+    [SerializeField] Clock clock;
+    [SerializeField] Loss loss;
+    [SerializeField] GameData data;
+    [SerializeField] GameObject boxPrefab;
 
-    bool gameOver = false;
+    GameObject boxGO;
+    BoxCollider2D boxCol;
 
     void Awake()
     {
-        clock.ResetClock(); 
+        clock.ResetClock();
         loss.Reset();
+        data.Reset();
     }
 
-    void Update() 
+    void LateUpdate()
     {
-        if(loss.total >= 50) 
+        if(data.gameOver) 
         {
-            gameOver = true;    
+            if(data.selectedBox) {
+                Destroy(data.selectedBox.gameObject);
+            }
+            return;
         }
 
-        if (!gameOver)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (loss.total >= 50)
         {
-            clock.UpdateClock(Time.deltaTime);
+            data.gameOver = true;
+        }
+
+        clock.UpdateClock(Time.deltaTime);
+
+        if(data.selectedBox) 
+        {
+            data.selectedBox.gameObject.transform.position = mousePos;
+            data.selectedBox.gameObject.transform.rotation = Quaternion.identity;
         }
     }
 }

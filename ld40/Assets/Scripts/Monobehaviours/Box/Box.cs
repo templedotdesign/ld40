@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Box : MonoBehaviour {
 
-    [SerializeField]Rigidbody2D body;
-    [SerializeField]float speed;
-    [SerializeField]Loss loss;
+    public  Rigidbody2D body;
+    public  BoxCollider2D col;
 
-    bool landed = false;
+    [SerializeField] float speed;
+    [SerializeField] Loss loss;
+    [SerializeField] GameData data;
+
+    [HideInInspector] public ColorTypes colorType;
+
+    bool landed;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,7 +29,7 @@ public class Box : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "loss") {
             loss.total++;
@@ -34,9 +37,8 @@ public class Box : MonoBehaviour {
         }
     }
 
-
     void FixedUpdate () {
-        if(landed && loss.total < 50) 
+        if(landed && !data.gameOver) 
         {
             body.MovePosition((Vector2)transform.position + (Vector2.right * speed * Time.fixedDeltaTime));
         }
@@ -44,6 +46,14 @@ public class Box : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("clicked box"); 
+        if(data.selectedBox != null) {
+            data.selectedBox.body.isKinematic = false;
+            data.selectedBox.col.enabled = true;
+            data.selectedBox = null;
+        }
+
+        data.selectedBox = this;
+        body.isKinematic = true;
+        col.enabled = false;
     }
 }

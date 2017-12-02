@@ -102,12 +102,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enums\ColorTypes\ColorTypes.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\Box\Box.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\BoxSpawner\BoxSpawner.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\GameController\GameController.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\Target\Target.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\UI\UIController.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Clock\Clock.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\GameData\GameData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Loss\Loss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01_UGUI.cs" />
