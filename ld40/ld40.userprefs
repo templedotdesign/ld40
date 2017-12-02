@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{C1BF5344-8410-6C42-D526-56922A5EC4D4}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Monobehaviours/GameController/GameController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/ScriptableObjects/Clock/Clock.cs" Line="25" Column="2" />
+      <File FileName="Assets/Scripts/Monobehaviours/UI/UIController.cs" Line="18" Column="1" />
+      <File FileName="Assets/Scripts/Monobehaviours/Box.cs" Line="35" Column="34" />
+      <File FileName="Assets/Scripts/Monobehaviours/Target.cs" Line="9" Column="1" />
+      <File FileName="Assets/Scripts/ScriptableObjects/Loss/Loss.cs" Line="10" Column="19" />
+      <File FileName="Assets/Scripts/Monobehaviours/GameController/GameController.cs" Line="12" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ld40 PreferredExecutionTarget="Unity.Editor" />
+  <MultiItemStartupConfigurations />
+</Properties>
