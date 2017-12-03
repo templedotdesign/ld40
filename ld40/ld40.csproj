@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\Clock\Clock.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameData\GameData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Loss\Loss.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\MenuEvents\MenuEvents.cs" />
     <Compile Include="Assets\Scripts\Structs\HighScore.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01_UGUI.cs" />
