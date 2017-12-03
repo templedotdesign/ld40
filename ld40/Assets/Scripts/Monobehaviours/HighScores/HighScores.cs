@@ -5,23 +5,30 @@ using UnityEngine;
 
 public class HighScores : MonoBehaviour
 {
+    [SerializeField] ScoreData scoreData;
+
     const string privateCode = "a973pJrixEqeponFB56a1wia6NgGJKX0WcyA-CAojAVw";
     const string publicCode = "5a232ba66b2b65c2d090abee";
     const string webURL = "http://dreamlo.com/lb/";
 
-    public HighScore[] highScoresList;
-    public Leaderboard leaderboard;
+    //public HighScore[] highScoresList;
+    //public Leaderboard leaderboard;
 
-    static HighScores instance;
+    //static HighScores instance;
 
-    void Awake() 
+    //void Awake() 
+    //{
+    //    instance = this;
+    //    leaderboard = GetComponent<Leaderboard>();
+    //}
+
+    void Awake()
     {
-        instance = this;
-        leaderboard = GetComponent<Leaderboard>();
+        StartCoroutine(RefreshHighScores());  
     }
 
-    public static void AddNewHighScore(string username, string score) {
-        instance.StartCoroutine(instance.UploadNewScore(username, score));
+    public void AddNewHighScore(string username, string score) {
+        StartCoroutine(UploadNewScore(username, score));
     }
 
     public void DownloadHighScores() {
@@ -30,9 +37,11 @@ public class HighScores : MonoBehaviour
 
     IEnumerator UploadNewScore(string username, string score) 
     {
+        scoreData.updatingScores = true;
         WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(username) + "/" + score);
         yield return www;
 
+        scoreData.updatingScores = false;
         if(string.IsNullOrEmpty(www.error)) 
         {
             Debug.Log("Upload Successful");
@@ -46,13 +55,16 @@ public class HighScores : MonoBehaviour
 
     IEnumerator DownloadScores()
     {
+        scoreData.updatingScores = true;
         WWW www = new WWW(webURL + publicCode + "/pipe/");
         yield return www;
+
+        scoreData.updatingScores = false;
 
         if (string.IsNullOrEmpty(www.error))
         {
             FormatHighScores(www.text);
-            leaderboard.OnHighScoresDownloaded(highScoresList);
+            //leaderboard.OnHighScoresDownloaded(highScoresList);
         } 
         else
         {
@@ -61,12 +73,21 @@ public class HighScores : MonoBehaviour
     }
 
     void FormatHighScores(string textStream) {
+        scoreData.highScoresList.Clear();
         string[] entries = textStream.Split(new char[] {'\n'}, System.StringSplitOptions.RemoveEmptyEntries);
-        highScoresList = new HighScore[entries.Length];
+        //scoreData.highScoresList = new HighScore[entries.Length];
         for (int i = 0; i < entries.Length; i++) {
             string[] entryInfo = entries[i].Split(new char[] { '|' });
-            highScoresList[i] = new HighScore(entryInfo[0], entryInfo[1]);
-            Debug.Log(highScoresList[i].username + ": " + highScoresList[i].score);
+            scoreData.highScoresList.Add(new HighScore(entryInfo[0], entryInfo[1]));
+        }
+    }
+
+    IEnumerator RefreshHighScores()
+    {
+        while (true)
+        {
+            DownloadHighScores();
+            yield return new WaitForSeconds(30);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Loss loss;
     [SerializeField] GameData data;
     [SerializeField] GameObject boxPrefab;
+    [SerializeField] MenuEvents menu;
 
     GameObject boxGO;
     BoxCollider2D boxCol;
@@ -20,11 +21,14 @@ public class GameController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(data.gameOver) 
+        if (data.gameOver)
         {
-            if(data.selectedBox) {
+            if (data.selectedBox)
+            {
                 Destroy(data.selectedBox.gameObject);
             }
+
+            StartCoroutine(EndGame());
             return;
         }
 
@@ -37,10 +41,15 @@ public class GameController : MonoBehaviour
 
         clock.UpdateClock(Time.deltaTime);
 
-        if(data.selectedBox) 
+        if (data.selectedBox)
         {
             data.selectedBox.gameObject.transform.position = mousePos;
             data.selectedBox.gameObject.transform.rotation = Quaternion.identity;
         }
+    }
+
+    IEnumerator EndGame() {
+        yield return new WaitForSeconds(2f);
+        menu.LoadScene(4);
     }
 }

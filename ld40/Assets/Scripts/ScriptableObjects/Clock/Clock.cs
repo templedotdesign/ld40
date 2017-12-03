@@ -6,7 +6,7 @@ using UnityEngine;
 public class Clock : ScriptableObject {
     [HideInInspector]public float totalTime;
 
-    public float minutes;
+    public int minutes;
     public float seconds;
 
     public void UpdateClock(float time)

@@ -1,4 +1,5 @@
-﻿public struct HighScore
+﻿[System.Serializable]
+public struct HighScore
 {
     public string username;
     public string score;
