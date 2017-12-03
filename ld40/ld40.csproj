@@ -106,11 +106,14 @@
     <Compile Include="Assets\Scripts\Monobehaviours\Box\Box.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\BoxSpawner\BoxSpawner.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\GameController\GameController.cs" />
+    <Compile Include="Assets\Scripts\Monobehaviours\HighScores\HighScores.cs" />
+    <Compile Include="Assets\Scripts\Monobehaviours\Leaderboard\Leaderboard.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\Target\Target.cs" />
     <Compile Include="Assets\Scripts\Monobehaviours\UI\UIController.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Clock\Clock.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameData\GameData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Loss\Loss.cs" />
+    <Compile Include="Assets\Scripts\Structs\HighScore.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark02.cs" />
